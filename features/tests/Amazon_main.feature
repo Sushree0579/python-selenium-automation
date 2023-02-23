@@ -15,3 +15,5 @@ Feature: Amazon main page tests
      Given Open amazon page
      Then click on BestSeller Page
      Then Verify that there are 5 links
+
+

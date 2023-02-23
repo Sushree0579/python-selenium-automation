@@ -9,7 +9,7 @@ HAM_MENU = (By.ID, 'nav-hamburger-menu')
 FOOTER_LINKS = (By.CSS_SELECTOR, "table.navFooterMoreOnAmazon td.navFooterDescItem")
 HEADER_LINKS = (By.CSS_SELECTOR, "#nav-xshop a.nav-a[data-csa-c-type='link']")
 BEST_SELLERS =(By.CSS_SELECTOR,"#data-csa-c-type='link']")
-@given('open Amazon page')
+#@given('open Amazon page')
 def open_Amazon(context):
     context.driver.get('https://www.amazon.com/')
 
@@ -44,10 +44,10 @@ def verify_footer_link_count(context, expected_amount):
 @then('Verify that header has {expected_amount} links')
 def verify_header_link_count(context, expected_amount):
     expected_amount = int(expected_amount)
-    header_links = context.driver.find_elements(*'HEADER_LINKS')
+    header_links = context.driver.find_elements(*HEADER_LINKS)
     assert len(header_links) == expected_amount, f'Expected {expected_amount} links but got {len(header_links)}'
 
-@then('Verify that text {expected_result} is shown')
+#@then('Verify that text {expected_result} is shown')
 def verify_search_result (context, expected_result):
         actual_result = context.driver.find_element(By.XPATH, "//span[@class='a-color-state a-text-bold']").text
         assert expected_result == actual_result, f'Expected{expected_result} but got actual {actual_result}'
@@ -57,5 +57,16 @@ def verify_Best_Seller_count(context, expected_amount):
     expected_amount = int(expected_amount)
     BEST_SELLERS= context.driver.find_elements(*'BEST_SELLERS')
     assert len(BEST_SELLERS) == expected_amount, f'Expected {expected_amount} links but got {len(BEST_SELLERS)}'
+
+
+@then('click on BestSeller Page')
+def verify_Best_Seller_count(context):
+    actual_result = context.driver.find_element(By.XPATH,"//a[contains(@href,'nav_cs_bestsellers')]").click()
+
+@then('Verify that there are 5 links')
+def verify_Best_Seeler_count(context):
+    actual_result = context.driver.find_elements(By.CSS_SELECTOR, "#zg_header ul li")
+    expected_result = 5
+    assert len(actual_result) == expected_result,f'Expected {expected_result} links but got {len(actual_result)}'
 
 
