@@ -63,8 +63,8 @@ def verify_Best_Seller_count(context, expected_amount):
 def verify_Best_Seller_count(context):
     actual_result = context.driver.find_element(By.XPATH,"//a[contains(@href,'nav_cs_bestsellers')]").click()
 
-@then('Verify that there are 5 links')
-def verify_Best_Seeler_count(context):
+@then('Verify that there are {expected_amount} links')
+def verify_Best_Seeler_count(context, expected_amount):
     actual_result = context.driver.find_elements(By.CSS_SELECTOR, "#zg_header ul li")
     expected_result = 5
     assert len(actual_result) == expected_result,f'Expected {expected_result} links but got {len(actual_result)}'

@@ -1,0 +1,28 @@
+body {
+  background-color: antiquewhite;
+}
+
+h1{
+  font-size: 1.5em;
+  color: brown;
+
+}
+
+h3{
+  font-size: medium;
+  color: blue;
+
+}
+
+h4{
+
+  font-size: small;
+  color: blueviolet;
+
+}
+li{
+  font-size: large;
+  color: brown;
+
+}
+
