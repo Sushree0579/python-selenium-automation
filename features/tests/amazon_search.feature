@@ -44,3 +44,8 @@ Then Verify that text "table" is shown
 #  Scenario: Footer has correct amount of links
 #    Given Open amazon page
 #    Then Verify that footer has 38 links
+  Scenario: Verify the user can see product names and images
+    Given Open Amazon page
+    When Input text coffee
+    When Click on search button
+    Then verify that every product has a name and an image

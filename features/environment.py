@@ -1,14 +1,16 @@
 from selenium import webdriver
+from selenium.webdriver.support.wait import WebDriverWait
 
 
 def browser_init(context):
     """
     :param context: Behave context
     """
-    context.driver = webdriver.Chrome()
+    context.driver = webdriver.Chrome(executable_path= "/Users/asorokin/Desktop/careerist/python-selenium-automation/chromedriver")
     # context.browser = webdriver.Safari()
     # context.browser = webdriver.Firefox()
 
+    context.driver.wait = WebDriverWait(context.driver, 10)
     context.driver.maximize_window()
     context.driver.implicitly_wait(4)
 
@@ -30,3 +32,4 @@ def after_step(context, step):
 def after_scenario(context, feature):
     context.driver.delete_all_cookies()
     context.driver.quit()
+

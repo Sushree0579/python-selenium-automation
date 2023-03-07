@@ -1,6 +1,7 @@
 
 from selenium.webdriver.common.by import By
 from behave import given,when,then
+from time import sleep
 
 
 AMAZON_SEARCH_FIELD = (By.ID, 'twotabsearchtextbox')
@@ -68,5 +69,35 @@ def verify_Best_Seeler_count(context, expected_amount):
     actual_result = context.driver.find_elements(By.CSS_SELECTOR, "#zg_header ul li")
     expected_result = 5
     assert len(actual_result) == expected_result,f'Expected {expected_result} links but got {len(actual_result)}'
+
+@then('Click sign in from popup')
+def click_signin(contet):
+    context.driver.wait.until(EC.element_to_be_clickable(SIGN_IN_BTN)).click()
+    context.driver.wait.until(
+        EC.element-to_be_clickable(SIGN_IN_BTN),
+        message='Sign_in_Btn not clickable'
+    ).click()
+
+@then('wait for {sec} sec')
+def wait_for_sec(context, sec):
+        sleep(int(sec))
+
+@then('Verify sign in popup shown')
+def verify_signin_popup_visible(context):
+    context.driver.wait.until(
+        EC.element_to_be_clickable(SIGN_IN_BTN),
+        message='signin btn not clickable'
+    )
+
+    @then('Verify sign in popup disappears')
+    def verify_signin_popup_not_visible(context):
+        context.driver.wait.until(
+            EC.invisibility_of_element_located(SIGN_IN_BTN),
+            message='signin_Btn did not disappear'
+        )
+
+
+
+
 
 
